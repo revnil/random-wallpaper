@@ -19,7 +19,6 @@ while test $# -gt 0; do
 done
 
 wget https://source.unsplash.com/1920x1080/?"$SEARCH" > /dev/null 2>&1
-#wget https://unsplash.it/1920/1080/?random > /dev/null 2>&1
 mv ./index.html\?"$SEARCH" randompaper.jpg
 feh --bg-scale randompaper.jpg
 
