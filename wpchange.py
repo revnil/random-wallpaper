@@ -21,7 +21,7 @@ def change_wallpaper():
     open('default.jpg','wb').write(r.content)
 
     subprocess.Popen('/usr/bin/feh --bg-scale default.jpg', shell=True)
-  else
+  else:
     exit(1)
 
 if __name__ == '__main__':
