@@ -12,7 +12,6 @@ def change_wallpaper():
   args = parser.parse_args()
 
   if args.search:
-    #search = sys.argv[1]
     search = sys.argv[1]
     url = "https://source.unsplash.com/1920x1080/"
     headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
