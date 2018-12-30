@@ -22,7 +22,8 @@ def change_wallpaper():
 
     subprocess.Popen('/usr/bin/feh --bg-scale default.jpg', shell=True)
   else:
-    exit(1)
+    print("Need input.")
+      exit(1)
 
 if __name__ == '__main__':
     change_wallpaper()
