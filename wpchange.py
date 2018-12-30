@@ -11,6 +11,7 @@ def change_wallpaper():
   parser.add_argument("-s", "--search", help="search for random wallpaper based on your input.")
   args = parser.parse_args()
 
+  os.chdir(os.path.dirname(__file__))
   if args.search:
     search = sys.argv[1]
     url = "https://source.unsplash.com/1920x1080/"
