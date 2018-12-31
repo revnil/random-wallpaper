@@ -6,28 +6,30 @@ import subprocess
 import argparse
 import time
 
+
 def change_wallpaper():
 
-  parser = argparse.ArgumentParser(description="Changes the wallpaper.")
-  parser.add_argument("-s", "--search", help="search for random wallpaper based on your input.")
-  args = parser.parse_args()
-  timestr = time.strftime("%Y%m%d-%H%M%S")
+    parser = argparse.ArgumentParser(description="Changes the wallpaper.")
+    parser.add_argument("-s", "--search", help="search for random wallpaper based on your input.")
+    args = parser.parse_args()
+    timestr = time.strftime("%Y%m%d-%H%M%S")
 
-  os.chdir(os.path.dirname(__file__))
-  if args.search:
-    search = sys.argv[1]
-    url = "https://source.unsplash.com/1920x1080/"
-    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+    os.chdir(os.path.dirname(__file__))
+    if args.search:
+        search = sys.argv[1]
+        url = "https://source.unsplash.com/1920x1080/"
+        headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
 
-    r = requests.get(url,headers=headers,allow_redirects=True,params=search)
-    search.strip()
-    search = search + timestr
-    open('%search.jpg','wb').write(r.content)
+        r = requests.get(url,headers=headers,allow_redirects=True,params=search)
+        search.replace(" ", "_")
+        wallpaper = search + timestr
+        open("%wallpaper.jpg",'wb').write(r.content)
 
-    subprocess.Popen('/usr/bin/feh --bg-scale %search.jpg', shell=True)
-  else:
-    parser.print_help()
-    exit(1)
+        subprocess.Popen("/usr/bin/feh --bg-scale %wallpaper.jpg", shell=True)
+    else:
+        parser.print_help()
+        exit(1)
+
 
 if __name__ == '__main__':
     change_wallpaper()
