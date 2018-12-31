@@ -4,13 +4,14 @@ import sys
 import requests
 import subprocess
 import argparse
-
+import time
 
 def change_wallpaper():
 
   parser = argparse.ArgumentParser(description="Changes the wallpaper.")
   parser.add_argument("-s", "--search", help="search for random wallpaper based on your input.")
   args = parser.parse_args()
+  timestr = time.strftime("%Y%m%d-%H%M%S")
 
   os.chdir(os.path.dirname(__file__))
   if args.search:
@@ -20,6 +21,7 @@ def change_wallpaper():
 
     r = requests.get(url,headers=headers,allow_redirects=True,params=search)
     search.strip()
+    search = search + timestr
     open('%search.jpg','wb').write(r.content)
 
     subprocess.Popen('/usr/bin/feh --bg-scale %search.jpg', shell=True)
