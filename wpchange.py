@@ -21,9 +21,11 @@ def change_wallpaper():
         headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
         r = requests.get(url, headers=headers, allow_redirects=True, params=search)
 
+        # Replace empty spaces with hyphens, convert filename to lowercase, and add a timestamp to the filename
         filename = search.replace(' ', '-').lower() + '-' + timestr + '.jpg'
         open(filename, 'wb').write(r.content)
 
+        # Change the wallpaper with feh
         subprocess.Popen('/usr/bin/feh --bg-scale ' + filename, shell=True)
     else:
         parser.print_help()
