@@ -6,6 +6,7 @@ import subprocess
 import argparse
 import time
 
+# Change the paper...
 
 def change_wallpaper():
 
